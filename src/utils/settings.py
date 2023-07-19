@@ -4,7 +4,6 @@ from types import SimpleNamespace as SN
 
 LINUX_HOME = str(Path.home())
 
-
 class ServerInfo:
     def __init__(self):
         self.gpu_mem, self.gpus, self.n_gpus = 0, [], 0
@@ -30,7 +29,9 @@ PROJ_NAME = 'CirTraining'
 # ! Project Path Settings
 
 GPU_CF = {
-    'py_path': f'{str(Path.home())}/miniconda/envs/ct/bin/python',
+    # /hkfs/home/haicore/aifb/cc7738/anaconda3/envs/ct/bin/python
+    # 'py_path': f'{str(Path.home())}/miniconda/envs/ct/bin/python',
+    'py_path': '/hkfs/home/haicore/aifb/cc7738/anaconda3/envs/ct/bin/python',
     'mnt_dir': f'{LINUX_HOME}/{PROJ_NAME}/',
     'default_gpu': '0',
 }
