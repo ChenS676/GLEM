@@ -31,7 +31,8 @@ PROJ_NAME = 'CirTraining'
 GPU_CF = {
     # /hkfs/home/haicore/aifb/cc7738/anaconda3/envs/ct/bin/python
     # 'py_path': f'{str(Path.home())}/miniconda/envs/ct/bin/python',
-    'py_path': '/hkfs/home/haicore/aifb/cc7738/anaconda3/envs/ct/bin/python',
+    'py_path': '/home/kit/aifb/cc7738/anaconda3/envs/ct/bin/python',
+    #source /home/kit/aifb/cc7738/anaconda3/etc/profile.d/conda.sh
     'mnt_dir': f'{LINUX_HOME}/{PROJ_NAME}/',
     'default_gpu': '0',
 }

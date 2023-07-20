@@ -3,18 +3,19 @@ import math
 from datasets import load_metric
 from transformers import AutoModel, EvalPrediction, TrainingArguments, Trainer
 import utils.function as uf
-from models.LMs.model import *
-from models.GLEM.GLEM_utils import *
-from utils.data.datasets import *
+from models.LMs.model import BertClassifier, BertEmbInfModel, BertClaInfModel
+from models.GLEM.GLEM_utils import EmIterInfo, glem_args_to_sub_module_args, get_lm_info, compute_loss
+from utils.data.datasets import SeqGraph, SeqGraphDataset
 import torch as th
+from pdb import set_trace; 
 
 METRICS = {  # metric -> metric_path
     'accuracy': 'src/utils/function/hf_accuracy.py',
-    'f1score': 'src/utils/function/hf_f1.py',
-    'precision': 'src/utils/function/hf_precision.py',
-    'recall': 'src/utils/function/hf_recall.py',
-    'spearmanr': 'src/utils/function/hf_spearmanr.py',
-    'pearsonr': 'src/utils/function/hf_pearsonr.py',
+    # 'f1score': 'src/utils/function/hf_f1.py',
+    # 'precision': 'src/utils/function/hf_precision.py',
+    # 'recall': 'src/utils/function/hf_recall.py',
+    # 'spearmanr': 'src/utils/function/hf_spearmanr.py',
+    # 'pearsonr': 'src/utils/function/hf_pearsonr.py',
 
 }
 
@@ -145,6 +146,7 @@ class LMTrainer():
             compute_metrics=compute_metrics,
         )
         self.eval_phase = 'Eval'
+        set_trace()
         self.trainer.train()
         # ! Save bert
         # self.model.save_pretrained(cf.out_ckpt, self.model.state_dict())

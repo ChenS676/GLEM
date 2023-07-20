@@ -1,4 +1,4 @@
-from models.LMs.lm_utils import *
+from models.LMs.lm_utils import LMConfig, SN, get_lm_model, get_lm_config, get_lm_trainer
 
 
 class BertConfig(LMConfig):

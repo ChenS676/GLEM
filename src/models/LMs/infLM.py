@@ -5,8 +5,9 @@ from tqdm import tqdm
 sys.path.append((osp.abspath(osp.dirname(__file__)).split('src')[0] + 'src'))
 from transformers import AutoModel, TrainingArguments, Trainer
 
-from models.LMs.lm_utils import *
-from models.LMs.model import *
+from models.LMs.lm_utils import LMConfig, get_lm_model, get_lm_config, get_lm_trainer
+
+from models.LMs.model import BertClassifier, BertEmbInfModel, BertClaInfModel
 from utils.data.datasets import SeqGraphDataset
 from transformers import logging as trfm_logging
 from ogb.nodeproppred import Evaluator

@@ -1,16 +1,23 @@
 import os
 from random import randint
-
+import torch as th
 import torch.nn.functional as F
 from transformers import AutoTokenizer
 
 from utils.function import *
-from utils.function.dgl_utils import *
-from utils.settings import *
+from utils.function.hf_accuracy import _KWARGS_DESCRIPTION, _DESCRIPTION
+from utils.function.np_utils import save_memmap, _judge_type
+from utils.settings import DATA_INFO, DATA_PATH, LINUX_HOME, ServerInfo, SV_INFO, PROJ_DIR, PROJ_NAME, GPU_CF, CPU_CF
+from utils.function.dgl_utils import sample_nodes, get_edge_set, edge_set_to_inds
+from utils.settings import ServerInfo
 from utils.data.preprocess import tokenize_graph, load_graph_info
 from copy import deepcopy
 import numpy as np
-from utils.data.preprocess import *
+from utils.data.preprocess import _subset_graph, plot_length_distribution, \
+tokenize_graph, process_graph_structure, process_pyg_graph_structure, \
+load_ogb_graph_structure_only, load_pyg_graph_structure_only, \
+load_graph_info, _tokenize_ogb_arxiv_datasets \
+from pdb import set_trace; 
 
 
 class SeqGraph():
@@ -203,6 +210,7 @@ class SeqGraphDataset(th.utils.data.Dataset):  # Map style
         self.d, self.mode = data, mode
 
     def __getitem__(self, node_id):
+        set_trace()
         if 'train' in self.mode:
             item = self.d.get_tokens(node_id)
         else:

@@ -2,7 +2,7 @@ import os.path as osp
 import sys
 
 sys.path.append((osp.abspath(osp.dirname(__file__)).split('src')[0] + 'src'))
-from models.LMs.lm_utils import *
+from models.LMs.lm_utils import LMConfig, get_lm_model, get_lm_config, get_lm_trainer
 
 if __name__ == "__main__":
     # ! Init Arguments

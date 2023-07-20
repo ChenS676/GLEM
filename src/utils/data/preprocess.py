@@ -191,6 +191,7 @@ def _tokenize_ogb_arxiv_datasets(d, labels, chunk_size=50000):
         meta_data.columns = ["mag_id", "title", "abstract"]
         data = pd.merge(node_ids, meta_data, how="left", on="mag_id")
         data = pd.merge(data, categories, how="left", on="label_id")
+        
         return data
 
     def read_ids_and_labels(data_root):
