@@ -16,8 +16,7 @@ import numpy as np
 from utils.data.preprocess import _subset_graph, plot_length_distribution, \
 tokenize_graph, process_graph_structure, process_pyg_graph_structure, \
 load_ogb_graph_structure_only, load_pyg_graph_structure_only, \
-load_graph_info, _tokenize_ogb_arxiv_datasets \
-from pdb import set_trace; 
+load_graph_info, _tokenize_ogb_arxiv_datasets 
 
 
 class SeqGraph():
@@ -178,6 +177,7 @@ class SeqGraph():
     def node_feature(self, nodes, on_cpu=False):
         # Only called at GNN (M-) step
         if 'ogbInd' in self.cf.dataset:
+            
             features = self.ogb_feat[nodes].cpu() if on_cpu else self.ogb_feat[nodes].to(self.device)
         else:
             features = self._th_float(self.ndata['feature'][nodes], on_cpu)
@@ -210,7 +210,6 @@ class SeqGraphDataset(th.utils.data.Dataset):  # Map style
         self.d, self.mode = data, mode
 
     def __getitem__(self, node_id):
-        set_trace()
         if 'train' in self.mode:
             item = self.d.get_tokens(node_id)
         else:

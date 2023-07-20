@@ -7,7 +7,6 @@ from utils.function.os_utils import init_random_state
 from models.GLEM.GLEM_utils import compute_loss
 import numpy as np
 import torch.nn.functional as F
-from pdb import set_trace; 
 
 class BertClassifier(PreTrainedModel):
     def __init__(self, model, n_labels, loss_func, pseudo_label_weight=1, dropout=0.0, seed=0, cla_bias=True, is_augmented=False, feat_shrink=''):
@@ -26,7 +25,6 @@ class BertClassifier(PreTrainedModel):
 
     def forward(self, **input):
         # Extract outputs from the model
-        set_trace()
         labels, is_gold = [input.pop(_) for _ in ["labels", 'is_gold']]
         outputs = self.bert_encoder(**input, output_hidden_states=True)
         emb = self.dropout(outputs['hidden_states'][-1])  # outputs[0]=last hidden state

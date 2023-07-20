@@ -7,11 +7,13 @@ from models.GNNs.GAMLP_DDP.model import R_GAMLP_RLU
 from models.GNNs.GAMLP_DDP.config import GAMLP_DDP_Config
 from models.GNNs.gnn_utils import *
 from models.GLEM.GLEM_utils import *
-from utils.data.datasets import *
+from utils.data.datasets import SeqGraph, SeqGraphDataset
 from utils.modules.early_stopper import EarlyStopping
 import torch.distributed as dist
-from utils.data.preprocess import *
+from utils.data.preprocess import _subset_graph, load_ogb_graph_structure_only, process_graph_structure, \
+tokenize_graph, log_graph_feature_source, save_and_report_gnn_result # type: ignore
 from bidict import bidict
+from pdb import set_trace
 
 LOG_FREQ = 10
 import time
@@ -29,10 +31,13 @@ class GAMLP_DDP_Trainer():
             # ! Load data
             # uf.remove_file(SeqGraph(cf)._processed_flag['g_info'])
             self.d = d = cf.data.init()
+            set_trace()
             raw_g = load_ogb_graph_structure_only(cf)[0]
             if 'ogbInd' in self.cf.dataset:
                 self.d.ogb_feat = raw_g.ndata['feat'].cpu()
+            set_trace()
             self.g = process_graph_structure(raw_g, cf)
+            set_trace()
             log_graph_feature_source(self.cf)
             if self.is_ind:
                 pickle_save(self.g.ndata['_ID'].numpy(), cf._g_id_file)

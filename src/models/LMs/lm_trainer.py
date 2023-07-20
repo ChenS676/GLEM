@@ -7,7 +7,6 @@ from models.LMs.model import BertClassifier, BertEmbInfModel, BertClaInfModel
 from models.GLEM.GLEM_utils import EmIterInfo, glem_args_to_sub_module_args, get_lm_info, compute_loss
 from utils.data.datasets import SeqGraph, SeqGraphDataset
 import torch as th
-from pdb import set_trace; 
 
 METRICS = {  # metric -> metric_path
     'accuracy': 'src/utils/function/hf_accuracy.py',
@@ -146,7 +145,6 @@ class LMTrainer():
             compute_metrics=compute_metrics,
         )
         self.eval_phase = 'Eval'
-        set_trace()
         self.trainer.train()
         # ! Save bert
         # self.model.save_pretrained(cf.out_ckpt, self.model.state_dict())
